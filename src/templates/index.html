@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Files</title>
+</head>
+<body>
+    <h1>Sound Files</h1>
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file }}
+                <audio controls>
+                    <source src="{{ url_for('uploaded_file', filename=file) }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
